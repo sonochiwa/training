@@ -21,7 +21,8 @@ func index(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	port := "80"
 	http.HandleFunc("/", index)
-	fmt.Println("Server running on http://localhost:7000")
-	http.ListenAndServe(":7000", nil)
+	fmt.Println("Server running on http://localhost:" + port)
+	http.ListenAndServe(":"+port, nil)
 }
