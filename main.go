@@ -22,7 +22,7 @@ func index(w http.ResponseWriter, r *http.Request) {
 
 func youtrack(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	if r.Method != "GET" {
+	if r.Method != "POST" {
 		http.Error(w, "Only GET requests are supported", http.StatusMethodNotAllowed)
 		return
 	}
