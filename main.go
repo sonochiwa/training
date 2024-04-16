@@ -20,14 +20,26 @@ func index(w http.ResponseWriter, r *http.Request) {
 	w.Write(res)
 }
 
+type YouTrackBody struct {
+	UserName string `json:"user_name"`
+}
+
 func youtrack(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
+
+	decoder := json.NewDecoder(r.Body)
+	var t YouTrackBody
+	err := decoder.Decode(&t)
+	if err != nil {
+		panic(err)
+	}
+
 	if r.Method != "POST" {
 		http.Error(w, "Only GET requests are supported", http.StatusMethodNotAllowed)
 		return
 	}
-	fmt.Println("ok")
-	res, _ := json.Marshal(Response{Message: "ok"})
+
+	res, _ := json.Marshal(Response{Message: t.UserName})
 	w.Write(res)
 }
 
