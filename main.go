@@ -39,6 +39,8 @@ func youtrack(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	fmt.Println(t.AuthorName)
+
 	res, _ := json.Marshal(Response{Message: t.AuthorName})
 	w.Write(res)
 }
