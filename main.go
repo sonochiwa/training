@@ -21,7 +21,7 @@ func index(w http.ResponseWriter, r *http.Request) {
 }
 
 type YouTrackBody struct {
-	UserName string `json:"user_name"`
+	AuthorName string `json:"author_name"`
 }
 
 func youtrack(w http.ResponseWriter, r *http.Request) {
@@ -39,7 +39,7 @@ func youtrack(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	res, _ := json.Marshal(Response{Message: t.UserName})
+	res, _ := json.Marshal(Response{Message: t.AuthorName})
 	w.Write(res)
 }
 
